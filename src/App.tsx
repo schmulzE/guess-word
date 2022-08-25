@@ -25,6 +25,9 @@ function App() {
    window.addEventListener("load",blinkWords, false)
   }, [word])
 
+
+  // logic for blinking letters
+  // wants each letters to blink individually not at once
   const blinkWords = () => {
     let wordArray = word.split('')
     letters.forEach((letter) => {

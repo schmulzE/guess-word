@@ -25,13 +25,13 @@ const Input: React.FC<Props> = ({ presentWord, setScoreHandler}) => {
     console.log(value)
   }
 
+  //logic for deleting letters
     const handleKeyDown = ({key}: React.KeyboardEvent<HTMLInputElement>, index: number) => {
     currentInputIndex = index
     if(key === 'Backspace') setActiveInputIndex(currentInputIndex - 1)
   }
   
   useEffect(() => {
-    // console.log(words)
     const identifier = setTimeout(() => {
       setScoreHandler(words)
     }, 700);
