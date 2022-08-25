@@ -1,0 +1,38 @@
+.cell-1 {
+  grid-area: top;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-column-gap: 10px;
+  text-align: center;
+  padding: .2rem;
+}
+.cell-2 {
+  grid-area: mid;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-column-gap: 10px;
+  text-align: center;
+  padding: 1.3rem;
+}
+.cell-3{
+  grid-area: last;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: 10px;
+  text-align: center;
+  padding: .2rem 3rem;
+}
+.col {
+  background-color: #0f7dff;
+}
+
+.blink{
+  animation: blink;
+  animation-duration: 4s;
+}
+
+@keyframes blink{
+  0%   {background-color: #0f7dff;}
+  50%  {background-color: yellow; color: black}
+  100% {background-color: #0f7dff;}
+}
