@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface NewInputProps {
   wordCount: number;
@@ -9,7 +9,8 @@ interface NewInputProps {
 const NewInput: React.FC<NewInputProps> = ({ wordCount, enteredWord, setEnteredWord }) => {
   const [activeInputIndex, setActiveInputIndex] = useState(0);
   const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
-
+  // console.log(enteredWord)
+  
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const enteredValue = e.target.value;
     if (!enteredValue) {
