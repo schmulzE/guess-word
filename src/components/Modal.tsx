@@ -9,20 +9,22 @@ const ModalContent: React.FC<Props> = ({ title, onConfirm, hint }) => {
         id="bottom-modal"
         data-modal-placement="bottom"
         tabIndex={-1}
-        className="overflow-y-auto m-0 overflow-x-hidden fixed bottom-auto z-50 w-screen lg:w-screen justify-center items-center flex"
+        className="overflow-y-auto m-0 overflow-x-hidden fixed top-32 right-10 z-50 w-4/5 lg:w-screen justify-center items-center flex"
         aria-modal="true"
         role="dialog"
       >
-        <div className="relative w-full max-w-md h-full md:h-auto">
-          <div className="relative bg-ochre shadow dark:bg-gray-700">
+        <div className="relative w-full h-full md:h-auto">
+          <div className="border-walnut border-8 m-4">
+
+          <div className="relative border-8 bg-old-whiskey border-old-whiskey shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)] dark:bg-gray-700">
             <button
               type="button"
-              className="absolute top-3 right-2.5 text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+              className="absolute -top-5 -right-4 text-white border-4 border-ochre bg-walnut rounded-full hover:bg-gray-200 hover:text-gray-900 text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
               onClick={onConfirm}
             >
               <svg
                 aria-hidden="true"
-                className="w-5 h-5"
+                className="w-4 h-4"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -35,20 +37,15 @@ const ModalContent: React.FC<Props> = ({ title, onConfirm, hint }) => {
               </svg>
               <span className="sr-only">Close modal</span>
             </button>
-
-            <div
-              className={`py-3 px-6 rounded-t border-white ${
-                title ? "border-b" : ""
-              }`}
-            >
-              <h3 className="text-center font-bold text-white text-2xl dark:text-white font-kumbh-sans capitalize">
-                {title}
-              </h3>
-            </div>
-
+           
+            <span className="text-center inline-block py-1 px-8 absolute -top-6 right-16 font-bold text-white text-xl dark:text-white font-kumbh-sans capitalize border-4 border-ochre bg-walnut rounded-full">
+              {title}
+            </span>
+          
             <div className="p-6 text-center font-kumbh-sans text-lg text-white italic">
                 "{hint}"
             </div>
+          </div>
           </div>
         </div>
       </div>
