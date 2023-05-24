@@ -1,14 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { GiAlarmClock } from "react-icons/gi";
 import { AiOutlineGift } from "react-icons/ai";
-import { BsPlayFill } from "react-icons/bs";
+import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { FaArrowRight } from "react-icons/fa";
 import Button from "./components/button";
 import { KeyBoards } from "./KeyBoard";
-import CountdownTimer from "./components/CountdownTimer";
 import NewInput from "./components/NewInput";
 import Modal from "./components/Modal"
 import "./App.css";
+import Timer from "./components/Timer";
+import Congratulation from "./components/Congratulation";
+import Fireworks from "./components/Fireworks";
+import useLocalStorage from "../src/useLocalStorage";
 
 function App() {
   // this is the word entered by the user
@@ -16,10 +19,18 @@ function App() {
   const [word, setWord] = useState("");
   const [hint, setHint] = useState("");
   const [keyboard, setKeyboard] = useState(KeyBoards);
-  const [score, setScore] = useState(0);
-  const [runTimer, setRunTimer] = useState(false);
+  const [score, setScore] = useLocalStorage("score", 0);
+
   const [popUp, setPopUp] = useState(false);
+  const [secondPopUp, setSecondPopUp] = useState(false);
+  const [thirdPopUp, setThirdPopUp] = useState(false);
   // const [index, setIndex] = useState(0)
+
+  const [isPaused, setIsPaused] = useState(true);
+  const [secondsLeft, setSecondsLeft] = useState(0);
+
+  const secondsLeftRef = useRef(secondsLeft);
+  const isPausedRef = useRef(isPaused);
 
   const onConfirm = () => setPopUp(false)
 
@@ -60,8 +71,6 @@ function App() {
       }
     })
   }
-  
-  const togglerTimer = () => setRunTimer((t) => !t);
 
   const setScoreHandler = (compareWord: string) => {
     let extWord = compareWord;
@@ -93,8 +102,9 @@ function App() {
     <div className="container px-auto mx-auto pb-9 bg-ochre text-neutral-100 h-screen font-kumbh-sans rounded-lg">
       <div className="flex justify-between pt-3">
         <div className="flex m-3">
+          {/* <Fireworks/> */}
           <GiAlarmClock className="w-8 h-8" />
-          <CountdownTimer runTimer={runTimer} />
+          <Timer setThirdPopUp={setThirdPopUp} isPaused={isPaused} secondsLeft={secondsLeft} setSecondsLeft={setSecondsLeft} isPausedRef={isPausedRef} secondsLeftRef={secondsLeftRef}/>
         </div>
         <div className="flex m-3">
           <div className="text-2xl uppercase">score</div>
@@ -111,27 +121,31 @@ function App() {
         </div>
         <div className="cell-2">
           {keyboard.slice(10, 19).map((letter) => (
-              <div key={letter.id} className={`col ${letter.isBlink ? "bg-text" : null}`}>
+            <div key={letter.id} className={`col ${letter.isBlink ? "bg-text" : null}`}>
               <span className={`${letter.isBlink ? "blink" : null}`}>{letter.text}</span>
             </div>
           ))}
         </div>
         <div className="cell-3">
           {keyboard.slice(19).map((letter) => (
-              <div key={letter.id} className={`col ${letter.isBlink ? "bg-text" : null}`}>
+            <div key={letter.id} className={`col ${letter.isBlink ? "bg-text" : null}`}>
               <span className={`${letter.isBlink ? "blink" : null}`}>{letter.text}</span>
             </div>
           ))}
         </div>
       </div>
       <div className="flex justify-center mt-9">
-        <Button icon={<AiOutlineGift className="w-7 h-7 ml-3 pt-1" />} text="hint" onClick={() => setPopUp(true)}></Button>
-        <Button icon={<BsPlayFill className="w-11 h-11 ml-1.5" />} text="" onClick={togglerTimer} />
+        <Button className='shadow-2xl w-14 h-14 rounded-full border-2 border-old-whiskey bg-walnut text-center mx-6' icon={<AiOutlineGift className="w-7 h-7 ml-3 pt-1" />} text="hint" onClick={() => setPopUp(true)}></Button>
+         {isPaused
+          ?  <Button className='shadow-2xl w-14 h-14 rounded-full border-2 border-old-whiskey bg-walnut text-center mx-6' icon={<BsPlayFill className="w-11 h-11 ml-1.5" />} text="" onClick={() => { setIsPaused(false); isPausedRef.current = false;} } />
+          : <Button className='shadow-2xl w-14 h-14 rounded-full border-2 border-old-whiskey bg-walnut text-center mx-6' icon={<BsPauseFill className="w-11 h-11 ml-1" />} text="" onClick={() => {  setIsPaused(true); isPausedRef.current = true; setSecondPopUp(true)
+        } } />}
         <Button
-        text=""
+          className='shadow-2xl w-14 h-14 rounded-full border-2 border-old-whiskey bg-walnut text-center mx-6'
+          text=""
           icon={<FaArrowRight className="w-8 h-8 ml-2.5"/>}
           onClick={fetchData}
-        />
+          />
       </div>
       <div className="flex justify-center mt-9">
         <NewInput
@@ -140,7 +154,16 @@ function App() {
           setEnteredWord={setEnteredWord}
         />
       </div>
-      {popUp && <Modal title={'hint!!!'} hint={hint} onConfirm={onConfirm}/>}
+      {popUp && <Modal title={'hint'}  onConfirm={onConfirm} children={hint} className2="border-8 bg-old-whiskey border-old-whiskey shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)]" className1="border-walnut border-8 m-4"/>}
+      {secondPopUp && <Modal title={'play'} hint={""} onConfirm={() => setSecondPopUp(false)} className2="border-8 bg-old-whiskey border-old-whiskey shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)]" className1="border-walnut border-8 m-4">
+        <Button className='shadow-2xl px-8 rounded-full border-4 my-4 border-ochre bg-walnut text-center mx-6' icon={undefined} text="Resume" onClick={() => { setIsPaused(false); isPausedRef.current = false; setSecondPopUp(false)} } />
+        <Button className='shadow-2xl px-8 rounded-full border-4 border-ochre bg-walnut text-center mx-6' icon={undefined} text="Quit" onClick={() => { setIsPaused(false); isPausedRef.current = false;} } />
+      </Modal>}
+       {thirdPopUp && <Modal title="" onConfirm={() => setThirdPopUp(false)} className1="" className2="">
+        <Congratulation title={"High Score"} score={score}/>
+        <Fireworks/>
+        <Button className='shadow-2xl pb-1 px-8 rounded-full border-4 my-8 border-ochre bg-walnut text-center mx-6 ' icon={undefined} text="Play Again" onClick={() => { setIsPaused(false); isPausedRef.current = false;} } />
+       </Modal>}
     </div>
   );
 }
