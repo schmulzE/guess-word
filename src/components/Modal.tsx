@@ -2,24 +2,24 @@ import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import styles from "./Modal.module.css";
 
-const ModalContent: React.FC<Props> = ({ title, onConfirm, hint }) => {
+const ModalContent: React.FC<Props> = ({ title, onConfirm, children, className1, className2 }) => {
   return (
     <Fragment>
       <div
         id="bottom-modal"
         data-modal-placement="bottom"
         tabIndex={-1}
-        className="overflow-y-auto m-0 overflow-x-hidden fixed top-32 right-10 z-50 w-4/5 lg:w-screen justify-center items-center flex"
+        className=" m-0 overflow-hidden fixed top-32 right-10 z-50 w-4/5 lg:w-screen justify-center items-center flex "
         aria-modal="true"
         role="dialog"
       >
         <div className="relative w-full h-full md:h-auto">
-          <div className="border-walnut border-8 m-4">
+          <div className={`${className1}`}>
 
-          <div className="relative border-8 bg-old-whiskey border-old-whiskey shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)] dark:bg-gray-700">
+          <div className={`relative ${className2} `}>
             <button
               type="button"
-              className="absolute -top-5 -right-4 text-white border-4 border-ochre bg-walnut rounded-full hover:bg-gray-200 hover:text-gray-900 text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+              className="absolute -top-6 -right-6 text-white border-4 border-ochre bg-walnut rounded-full hover:bg-gray-200 hover:text-gray-900 text-sm p-1.5 ml-auto inline-flex items-center"
               onClick={onConfirm}
             >
               <svg
@@ -42,8 +42,8 @@ const ModalContent: React.FC<Props> = ({ title, onConfirm, hint }) => {
               {title}
             </span>
           
-            <div className="p-6 text-center font-kumbh-sans text-lg text-white italic">
-                "{hint}"
+            <div className="p-6 text-center font-kumbh-sans text-lg text-white">
+                {children}
             </div>
           </div>
           </div>
@@ -58,8 +58,11 @@ const Backdrop: React.FC<Props> = (props) => {
 
 interface Props{
   title: string,
-  hint: string
-  onConfirm: any
+  hint?: string
+  onConfirm: any,
+  children: React.ReactNode
+  className1?: string,
+  className2?: string
 }
 
 const Modal: React.FC<Props> = (props) => {
@@ -68,13 +71,15 @@ const Modal: React.FC<Props> = (props) => {
     <ModalContent
       onConfirm={props.onConfirm}
       title={props.title}
-      hint={props.hint}
+      className1={props.className1}
+      className2={props.className2}
+      children={props.children}
     />
   );
   return (
     <div>
       {ReactDOM.createPortal(
-        <Backdrop onConfirm={props.onConfirm} title={""} hint={""} />,
+        <Backdrop onConfirm={props.onConfirm} title={""} hint={""} children={undefined} />,
         document.getElementById("backdrop")!
       )}
       {ReactDOM.createPortal(
