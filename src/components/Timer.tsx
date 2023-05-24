@@ -4,12 +4,13 @@ type IProps = {
     isPaused: boolean,
     secondsLeft: number,
     setSecondsLeft: React.Dispatch<React.SetStateAction<number>>
+    setThirdPopUp: React.Dispatch<React.SetStateAction<boolean>>
     secondsLeftRef:  React.MutableRefObject<number>
     isPausedRef: React.MutableRefObject<boolean>
 }
 
 
-const Timer:React.FC<IProps> = ({isPaused, secondsLeft, setSecondsLeft, secondsLeftRef, isPausedRef}) => {
+const Timer:React.FC<IProps> = ({isPaused, secondsLeft, setSecondsLeft, secondsLeftRef, isPausedRef, setThirdPopUp}) => {
 
   function tick() {
     secondsLeftRef.current--;
@@ -18,15 +19,17 @@ const Timer:React.FC<IProps> = ({isPaused, secondsLeft, setSecondsLeft, secondsL
 
   useEffect(() => {
 
-    secondsLeftRef.current = 2 * 60;
+    secondsLeftRef.current = 1 * 60;
     setSecondsLeft(secondsLeftRef.current);
 
     const interval = setInterval(() => {
       if (isPausedRef.current) {
         return;
       }
-      if (secondsLeftRef.current === 0) {
-        return;
+      if (secondsLeftRef.current === 1) {
+        // return ;
+        clearInterval(interval)
+        setThirdPopUp(true)
       }
 
       tick();
