@@ -37,6 +37,7 @@ const NewInput: React.FC<NewInputProps> = ({ wordCount, enteredWord, setEnteredW
     }
   };
 
+
   useEffect(() => {
     inputsRef.current[activeInputIndex]?.focus();
   }, [activeInputIndex]);
@@ -68,6 +69,7 @@ const NewInput: React.FC<NewInputProps> = ({ wordCount, enteredWord, setEnteredW
           style={style}
           key={i}
           maxLength={1}
+          autoFocus={i === 0}
           className="w-11 h-20 bg-walnut text-center text-3xl rounded-lg ml-3 shadow-inner-lg"
         />
       ))}
