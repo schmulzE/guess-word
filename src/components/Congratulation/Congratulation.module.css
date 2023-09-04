@@ -1,0 +1,22 @@
+.ribbon {
+    --s: 70px; /* the ribbon size */
+    --d: 30px; /* the depth */
+    --c: 20px; /* the cutout part */
+    /* update one variable a time and you will understand what it does */
+    
+    padding: 0 calc(var(--s) + var(--d)) var(--d);
+    background:
+      conic-gradient(at left  var(--s) bottom var(--d),
+       #0000 25%,#0008 0 37.5%,#0004 0) 0   /50% no-repeat,
+      conic-gradient(at right var(--s) bottom var(--d),
+       #0004 62.5%,#0008 0 75%,#0000 0) 100%/50% no-repeat;
+    clip-path: polygon(0 var(--d), var(--s) var(--d),var(--s) 0,calc(100% - var(--s)) 0,calc(100% - var(--s)) var(--d),100% var(--d),calc(100% - var(--c)) calc(50% + var(--d)/2),100% 100%,calc(100% - var(--s) - var(--d)) 100%,calc(100% - var(--s) - var(--d)) calc(100% - var(--d)),calc(var(--s) + var(--d)) calc(100% - var(--d)),calc(var(--s) + var(--d)) 100%,0 100%,var(--c) calc(50% + var(--d)/2));
+    background-color: #CC333F; /* the main color */
+    /* width: fit-content; you may need to use this in your code if the element is full width */
+
+  
+  }
+
+.score{
+  font-size: 50px;
+}
