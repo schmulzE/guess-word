@@ -13,7 +13,7 @@ const ModalContent: React.FC<Props> = ({ title, onConfirm, children, className1,
         aria-modal="true"
         role="dialog"
       >
-        <div className="relative w-full h-full md:h-auto">
+        <div className="relative lg:w-1/2 h-full md:h-auto">
           <div className={`${className1}`}>
 
           <div className={`relative ${className2} `}>
@@ -38,12 +38,12 @@ const ModalContent: React.FC<Props> = ({ title, onConfirm, children, className1,
               <span className="sr-only">Close modal</span>
             </button>
            
-            <span className="text-center inline-block py-1 px-8 absolute -top-6 right-16 font-bold text-white text-xl dark:text-white font-kumbh-sans capitalize border-4 border-ochre bg-walnut rounded-full">
+           { title && <span className="text-center inline-block py-1 px-8 absolute lg:-top-6 lg:right-60 font-bold text-white text-xl dark:text-white font-kumbh-sans capitalize border-4 border-ochre bg-walnut rounded-full">
               {title}
-            </span>
+            </span> }
           
             <div className="p-6 text-center font-kumbh-sans text-lg text-white">
-                {children}
+              {children}
             </div>
           </div>
           </div>
