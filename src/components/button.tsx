@@ -4,15 +4,16 @@ interface Props{
   icon?: JSX.Element,
   text: string,
   onClick: (event: any) => void,
-  className: string
+  className: string,
+  hint?: string,
 }
 
-const button: React.FC<Props> = (Props) => {
+const button: React.FC<Props> = (props) => {
   return (
     <Fragment>
-    <button className={Props.className} onClick={Props.onClick}>
-      {Props.icon} 
-    <span className='text-xs uppercase tracking-wider'>{Props.text}</span>
+    <button disabled={props.hint == ''} className={props.className} onClick={props.onClick}>
+      {props.icon} 
+    <span className='text-xs lg:text-md uppercase tracking-wider'>{props.text}</span>
     </button>
     </Fragment>
   )
