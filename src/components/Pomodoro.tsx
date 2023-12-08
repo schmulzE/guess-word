@@ -5,6 +5,7 @@ type IProps = {
   isActive: boolean,
   isBreak: boolean,
   minutes: number,
+  resetGame: () => void,
   seconds: number,
   setMinutes: React.Dispatch<React.SetStateAction<number>>
   setSeconds: React.Dispatch<React.SetStateAction<number>>
@@ -12,7 +13,7 @@ type IProps = {
   setIsBreak: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const PomodoroTimer: React.FC<IProps>  = ({isActive, setIsActive, minutes, setMinutes, seconds, setSeconds, isBreak, setIsBreak}) => {
+const PomodoroTimer: React.FC<IProps>  = ({isActive, setIsActive, minutes, setMinutes, seconds, setSeconds, isBreak, setIsBreak, resetGame}) => {
 
   useEffect(() => {
     let interval: number | undefined;
@@ -23,7 +24,7 @@ const PomodoroTimer: React.FC<IProps>  = ({isActive, setIsActive, minutes, setMi
           if (minutes === 0) {
             // Timer is complete, switch between work and break
             setIsBreak(!isBreak);
-            setMinutes(isBreak ? 25 : 5); // Set work or break time
+            resetGame(); // reset game after timer is complete
           } else {
             // Decrease minutes and reset seconds
             setMinutes(minutes - 1);
