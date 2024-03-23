@@ -6,6 +6,7 @@ interface Props{
   onClick: (event: any) => void,
   className: string,
   hint?: string,
+  btnTextClass: string,
 }
 
 const button: React.FC<Props> = (props) => {
@@ -13,7 +14,7 @@ const button: React.FC<Props> = (props) => {
     <Fragment>
     <button disabled={props.hint == ''} className={props.className} onClick={props.onClick}>
       {props.icon} 
-    <span className='text-xs lg:text-md uppercase tracking-wider'>{props.text}</span>
+    <span className={props.btnTextClass + ' font-Peralta'}>{props.text}</span>
     </button>
     </Fragment>
   )
