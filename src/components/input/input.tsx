@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
 import './input.css';
+import React, { useEffect, useRef, useState } from "react";
 
 interface NewInputProps {
   inputFlag: boolean;
@@ -69,9 +69,12 @@ const Input: React.FC<NewInputProps> = ({ wordCount, enteredWord, setEnteredWord
           value={enteredWord.charAt(i)}
           style={style}
           key={i}
+          type='text'
+          name={`input-${i}`}
           maxLength={1}
+          role="textbox"
           autoFocus={i === 0}
-          className={(inputFlag ? 'shake-animation ' : null) + " w-11 h-20 bg-walnut text-center text-3xl rounded-lg ml-3 shadow-inner-lg font-Peralta"}
+          className={(inputFlag ? 'shake-animation' : null) + " w-11 h-20 bg-walnut text-center text-3xl rounded-lg ml-3 shadow-inner-lg font-Peralta"}
         />
       ))}
     </>
