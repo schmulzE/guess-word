@@ -5,7 +5,7 @@ type IProps = {
   isActive: boolean,
   isBreak: boolean,
   minutes: number,
-  resetGame: () => void,
+  gameOver: () => void,
   seconds: number,
   setMinutes: React.Dispatch<React.SetStateAction<number>>
   setSeconds: React.Dispatch<React.SetStateAction<number>>
@@ -13,10 +13,10 @@ type IProps = {
   setIsBreak: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const PomodoroTimer: React.FC<IProps>  = ({isActive, setIsActive, minutes, setMinutes, seconds, setSeconds, isBreak, setIsBreak, resetGame}) => {
+const PomodoroTimer: React.FC<IProps>  = ({isActive, setIsActive, minutes, setMinutes, seconds, setSeconds, isBreak, setIsBreak, gameOver}) => {
 
   useEffect(() => {
-    let interval: number | undefined;
+    let interval: string | number | NodeJS.Timeout | undefined ;
 
     if (isActive) {
       interval = setInterval(() => {
@@ -24,7 +24,7 @@ const PomodoroTimer: React.FC<IProps>  = ({isActive, setIsActive, minutes, setMi
           if (minutes === 0) {
             // Timer is complete, switch between work and break
             setIsBreak(!isBreak);
-            resetGame(); // reset game after timer is complete
+            gameOver(); // reset game after timer is complete
           } else {
             // Decrease minutes and reset seconds
             setMinutes(minutes - 1);
@@ -45,7 +45,7 @@ const PomodoroTimer: React.FC<IProps>  = ({isActive, setIsActive, minutes, setMi
 
   return (
     <div className="pomodoro-timer">
-      <div className="timer text-2xl">
+      <div className="timer text-2xl font-Peralta">
         {`${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`}
       </div>
       <div className="controls">
