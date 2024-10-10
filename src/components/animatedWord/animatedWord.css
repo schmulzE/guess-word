@@ -1,0 +1,86 @@
+.animated-word {
+  display: inline-block;
+}
+
+.animated-word span {
+  display: inline-block;
+  opacity: 0;
+}
+
+/* Stagger animation */
+.stagger span {
+  animation: stagger 0.5s ease forwards;
+}
+
+@keyframes stagger {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* FadeIn animation */
+.fadeIn span {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* PopUp animation */
+.popUp span {
+  animation: popUp 0.5s ease forwards;
+}
+
+@keyframes popUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* RotateIn animation */
+.rotateIn span {
+  animation: rotateIn 0.5s ease forwards;
+}
+
+@keyframes rotateIn {
+  0% {
+    opacity: 0;
+    transform: rotateX(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0);
+  }
+}
+
+/* SlideIn animation */
+.slideIn span {
+  animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
