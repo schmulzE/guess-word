@@ -1,67 +1,32 @@
-.cell-1 {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-column-gap: 10px;
-  text-align: center;
-  padding: .2rem;
-}
-.cell-2 {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-column-gap: 10px;
-  text-align: center;
-  padding: 1.3rem;
-}
-.cell-3{
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-column-gap: 10px;
-  text-align: center;
-  padding: .2rem 3rem;
+.rubik-gemstones-regular {
+  font-family: "Rubik Gemstones", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.col {
-  position: relative;
-  background-color: #0f7dff;
+.button {
+--mask: 
+linear-gradient(#000 0 0) 50%/calc(100% - 46.25px) calc(100% - 46.25px) no-repeat,
+radial-gradient(farthest-side,#000 98%,#0000) 0 0/50px 50px round;
 }
 
-.bg-text{
-  animation: bg-text 1.5s linear infinite;
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-@keyframes bg-text{
-  0%   {
-	 	background-color: #0f7dff;
-  }
-  50%  {
-    background-color: yellow;
-  }
-  100% {
-    background-color: #0f7dff;
-  }
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
-.blink{
-  animation: blink 1.5s linear infinite;
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
 }
 
-@keyframes blink{
-  0%   {
-	 	background-image: linear-gradient(0deg, #BBDBBE 0%, #ffff 100%);
-  }
-  50%  {
-    background-image: linear-gradient(0deg, #000000 0%, #000000 100%);
-  }
-  100% {
-    	background-image: linear-gradient(0deg, #BBDBBE 0%, #ffff 100%);
-  }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
-
-.col span {
-	color: transparent;
-	background-image: linear-gradient(0deg, #BBDBBE 0%, #ffff 100%);
-	-webkit-background-clip: text;
-	background-clip: text;
-	filter: drop-shadow(0 2px 2px hsla(290, 100%, 20%, 1));
-}
-
