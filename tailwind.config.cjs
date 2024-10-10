@@ -2,12 +2,6 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    screens: {
-      sm: "480px",
-      md: "768px",
-      lg: "976px",
-      xl: "1440px",
-    },
     colors: {
       transparent: "transparent",
       red: "#do312d",
@@ -20,6 +14,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'kumbh-sans': ["Kumbh Sans", "sans-serif"],
+        'Peralta' : ["Peralta", 'serif']
       },
       colors: {
         neutral: {
