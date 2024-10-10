@@ -7,15 +7,17 @@ interface Props{
   className: string,
   hint?: string,
   btnTextClass: string,
+  pressed?: boolean,
+  data_testid?: string
 }
 
 const button: React.FC<Props> = (props) => {
   return (
     <Fragment>
-    <button disabled={props.hint == ''} className={props.className} onClick={props.onClick}>
-      {props.icon} 
-    <span className={props.btnTextClass + ' font-Peralta'}>{props.text}</span>
-    </button>
+      <button data-testid={props.data_testid} aria-pressed={props.pressed} disabled={props.hint == ''} className={props.className} onClick={props.onClick}>
+        {props.icon} 
+        <span className={props.btnTextClass + ' font-Peralta'}>{props.text}</span>
+      </button>
     </Fragment>
   )
 }
