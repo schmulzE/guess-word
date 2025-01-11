@@ -209,14 +209,14 @@ function App() {
       icon: undefined,
       text: "restart",
       onclick: () => restartGame(),
-      textClass: "text-md pt-1 inline-block lg:text-lg uppercase tracking-wider"
+      textClass: "text-sm md:text-md pt-1 inline-block lg:text-lg uppercase tracking-wider"
     },
     {
       class: "shadow-2xl font-Peralta px-8 pb-2 rounded-full border-4 border-ochre bg-walnut text-center",
       icon: undefined,
       text: "quit",
       onclick: () => resetGame(),
-      textClass: "text-md pt-1 inline-block lg:text-lg uppercase tracking-wider"
+      textClass: "text-sm md:text-md pt-1 inline-block lg:text-lg uppercase tracking-wider"
     },
   ]
 
@@ -301,12 +301,12 @@ function App() {
         />
       </div>
 
-      <Modal data_testid="hint-modal" open={hintPopUp} modalClass="w-96">
-        <div className="border-8 bg-old-whiskey text-center border-old-whiskey shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)] h-80  overflow-y-auto w-96">
+      <Modal data_testid="hint-modal" open={hintPopUp} modalClass="w-80 md:w-96 lg:w-80">
+        <div className="border-8 bg-old-whiskey text-center border-old-whiskey shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)] h-80 overflow-y-auto w-80 md:w-96 lg:w-80">
           <button onClick={() => setHintPopUp(false)} className="border-ochre border-4 p-2 bg-walnut m-4 rounded-full absolute -top-8 -right-6 md:-right-6">
             <IoCloseSharp className="text-white md:text-lg text-md"/>
           </button>
-          <span className="text-center inline-block py-1 px-8 absolute -top-3 right-[55px] md:right-32 lg:right-32 font-bold text-white text-xl font-Peralta uppercase tracking-wider border-4 border-ochre bg-walnut rounded-full">
+          <span className="text-center inline-block py-1 px-8 absolute -top-3 right-[90px] md:right-32 lg:right-24 font-bold text-white text-xl font-Peralta uppercase tracking-wider border-4 border-ochre bg-walnut rounded-full">
             hint
           </span>
           <div className="px-5 py-10 text-xl text-white font-Peralta">{hint}</div>
