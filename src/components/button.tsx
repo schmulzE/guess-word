@@ -8,7 +8,8 @@ interface Props{
   hint?: string,
   btnTextClass: string,
   pressed?: boolean,
-  data_testid?: string
+  data_testid?: string,
+  children?: React.ReactNode;
 }
 
 const button: React.FC<Props> = (props) => {

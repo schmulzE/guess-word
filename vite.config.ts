@@ -7,6 +7,20 @@ const viteConfig = defineViteConfig({
 });
 
 const vitestConfig = defineVitestConfig({
+  build: {
+    rollupOptions: {
+      external: [
+        '**/*.cy.jsx',
+        '**/*.cy.tsx',
+        'cypress/',
+        'cypress.config.js',
+        '**/*.test.jsx',
+        '**/*.test.tsx',
+        '__tests__/',
+        'test/'
+      ]
+    }
+  },
   test: {
     globals: true,
     environment: 'jsdom',
