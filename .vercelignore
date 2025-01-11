@@ -1,0 +1,8 @@
+**/*.cy.jsx
+**/*.cy.tsx
+cypress/
+cypress.config.js
+**/*.test.jsx
+**/*.test.tsx
+__tests__/
+test/
